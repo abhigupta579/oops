@@ -153,14 +153,14 @@ $emp1->empInfo('Abhishek', 'Web Dev', 20000);
 class Programmer extends Employee
 {
     public $age;
-
     function empProg($name, $role, $salary, $age)
     {
         echo "<br>Programmer Name is " . $this->name = $name . " His role is " . $this->role = $role . " His Salary is " . $this->salary = $salary . " And His Age is " . $this->age = $age;
     }
 }
 
-$emp2 = new Programmer();
-$emp2->empInfo('absh', 'dev', 10000);
-$emp2->empProg('Anish', 'Engineer', 30000, 28);
+$prog = new Programmer();
+$emp1->empInfo('absh', 'dev', 10000);
+$prog->empProg('Anish', 'Engineer', 30000, 28);
+
 ?>
