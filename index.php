@@ -163,4 +163,303 @@ $prog = new Programmer();
 $emp1->empInfo('absh', 'dev', 10000);
 $prog->empProg('Anish', 'Engineer', 30000, 28);
 
+
+//OOPS with Vishal...
+class class1
+{
+    public $name;
+    public $x = 1, $m, $n, $y = 33, $z = 66;
+
+    // function __construct()
+    // {
+    //     echo "<br>Class1 Constructor Called...";
+    // }
+
+    function fun1()
+    {
+        return $this->x++;
+    }
+
+    // function fun2()
+    // {
+    //     echo "<br>fun2<br>";
+    // }
+
+    // function fun3($name)
+    // {
+    //     return $this->name = $name;
+    // }
+    function dispNums($m, $n)
+    {
+        return $this->m = $m . " and " . $this->n = $n;
+    }
+
+    function dispNum2()
+    {
+        return $this->y . " and " . $this->z;
+    }
+
+    // function __destruct()
+    // {
+    //     echo "<br>Class1 Destroyed...";
+    // }
+}
+
+$obj1 = new class1();
+echo "<br>Value of X before Fun is " . $obj1->x;
+$obj1->fun1();
+echo "<br>Value of X After Fun is " . $obj1->x;
+$obj1->fun1();
+$obj1->fun1();
+$obj1->fun1();
+echo "<br>Value of X After 4 Funs is " . $obj1->x;
+echo "<br>Values of m and n from Obj1 are " . $obj1->dispNums(44, 55);
+
+$obj2 = new class1();
+echo "<br>Values of Y and Z from Obj2 are " . $obj2->dispNum2();
+
+
+//Inheritance...
+class Base1
+{
+    public $x, $y;
+
+    function __construct()
+    {
+        echo "<br>Base Const Called...";
+    }
+
+    function getNums($x, $y)
+    {
+        $this->x = $x;
+        $this->y = $y;
+    }
+}
+
+$objB = new Base1();
+
+class Derived extends Base1
+{
+    function __construct()
+    {
+        parent::__construct();
+        echo "<br>Derived Const Called...";
+    }
+
+    function dispNums()
+    {
+        echo "<br>Values Of X and Y inherited from Class A in class B are " . $this->x . " and  " . $this->y;
+    }
+}
+
+$objD = new Derived();
+$objD->getNums(33, 44);
+$objD->dispNums();
+
+$objD->getNums(22, 77);
+$objD->dispNums();
+
+
+//Encapsulation...
+class En1
+{
+    public $x, $y, $name;
+    protected $z, $n = 99; //Protected cannot be accessed directly...can be Accessed by Fxn only...
+
+    function __construct()
+    {
+        $this->x = 1;
+        $this->y = 77;
+    }
+
+    function getProtect()
+    {
+        return $this->n;
+    }
+
+    function getInfo($x, $name)
+    {
+        $this->x = $x;
+        $this->name = $name;
+    }
+
+    function dispInfo()
+    {
+        echo "<br>ID and Name is " . $this->x . " and " . $this->name;
+    }
+
+    function show()
+    {
+        echo "<br>Same fxn but in Base class...";
+    }
+}
+
+class EnD1 extends En1
+{
+    function getNumFromBase($z)
+    {
+        return $this->z = $z;
+    }
+
+    function show()
+    {
+        echo "<br>Same fxn but in Derived class...";
+    }
+}
+
+$objEnD = new EnD1();
+echo "<br>Public Number from Base in derived class is " . $objEnD->y;
+echo "<br>Protected Number from Base in derived class is " . $objEnD->getNumFromBase(66);
+
+$objEn = new En1();
+echo "<br>" . $objEn->x;
+
+$objEn->x = 5;
+echo "<br>", $objEn->x;
+
+$objEn->getInfo(22, 'Vikas');
+$objEn->dispInfo();
+echo "<br>Protected Member is " . $objEn->getProtect();
+// $objEn->n; Cannot access Protected member Directly...
+
+//PRIVATE members can be Accessed within a Class only...
+
+$objEnD->show();
+
+
+//Abstraction...
+abstract class BaseA
+{
+    abstract function disp();
+    //Normal Fxn can be defined as usual in Abstract Class...
+}
+
+class DeriveA extends BaseA
+{
+    function disp()
+    {
+        echo "<br>This is Abstract Fxn in Derived Class...";
+    }
+}
+$objA = new DeriveA();
+$objA->disp();
+
+
+abstract class Bank
+{
+    abstract function deposit();
+    abstract function withdraw();
+}
+
+class BankOperation extends Bank
+{
+    function deposit()
+    {
+        echo "<br>Deposit Money...";
+    }
+    function withdraw()
+    {
+        echo "<br>You can Withdraw Money...";
+    }
+}
+
+class hdfc extends Bank
+{
+    function deposit()
+    {
+        echo "<br>You can Deposit now in HDFC bank...";
+    }
+
+    function withdraw()
+    {
+        echo "<br>You can withdraw from HDFC Bank...";
+    }
+}
+
+$objBankOperation = new BankOperation();
+$objBankOperation->deposit();
+$objBankOperation->withdraw();
+
+$objHdfc = new hdfc();
+$objHdfc->deposit();
+$objHdfc->withdraw();
+
+
+//Interface...It supports Multiple Inheritence...but we cant define Variables here... 
+interface BaseIn1
+{
+    function test();
+}
+
+interface BaseIn2
+{
+    function test2();
+}
+
+class DerivedIn implements BaseIn1, BaseIn2
+{
+    function test()
+    {
+        echo "<br>Test1 fxn in Base1 class...";
+    }
+
+    function test2()
+    {
+        echo "<br>Test2 fxn in Base2 class...";
+    }
+}
+
+$objDerInter = new DerivedIn();
+$objDerInter->test();
+$objDerInter->test2();
+
+
+//Static Members...
+class Stat1
+{
+    static public $num = 10;
+    static function statDisp()
+    {
+        echo "<br>This is Static Fxn called...";
+        echo "<br>Static Member in Fxn is " . self::$num; //Static Variable is called using Self not this under Fxn...Here, we cant set variable to this bcz no Object is created...
+    }
+} //Static Members are called directly by Class :: ,no need to create objects...
+echo "<br>Static Member is " . Stat1::$num;
+Stat1::statDisp();
+
+
+//TRAITS...this is used when we need class acc to our req.
+trait a
+{
+    function fun1()
+    {
+        echo "<br>fun1 called...";
+    }
+}
+
+class b extends a
+{
+    function fun2()
+    {
+        echo "<br>fun2 called...";
+    }
+}
+
+class c
+{
+
+    function fun3()
+    {
+        echo "<br>fun3 called...";
+    }
+}
+
+class d extends c
+{
+    function fun4()
+    {
+        echo "<br>fun4 called...";
+    }
+}
+
 ?>
